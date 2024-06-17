@@ -9,3 +9,4 @@ D:\Project\BackendFinanceManagement\FinanceManagement.CORE\obj\Debug\net8.0\Fina
 D:\Project\BackendFinanceManagement\FinanceManagement.CORE\obj\Debug\net8.0\refint\FinanceManagement.CORE.dll
 D:\Project\BackendFinanceManagement\FinanceManagement.CORE\obj\Debug\net8.0\FinanceManagement.CORE.pdb
 D:\Project\BackendFinanceManagement\FinanceManagement.CORE\obj\Debug\net8.0\ref\FinanceManagement.CORE.dll
+D:\Project\BackendFinanceManagement\FinanceManagement.CORE\obj\Debug\net8.0\FinanceManagement.CORE.sourcelink.json

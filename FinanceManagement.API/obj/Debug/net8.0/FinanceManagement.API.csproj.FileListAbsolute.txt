@@ -108,3 +108,4 @@ D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\Finan
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.genruntimeconfig.cache
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\ref\FinanceManagement.API.dll
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.sourcelink.json

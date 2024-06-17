@@ -15,3 +15,4 @@ D:\Project\BackendFinanceManagement\FinanceManagement.SERVICES\obj\Debug\net8.0\
 D:\Project\BackendFinanceManagement\FinanceManagement.SERVICES\obj\Debug\net8.0\refint\FinanceManagement.SERVICES.dll
 D:\Project\BackendFinanceManagement\FinanceManagement.SERVICES\obj\Debug\net8.0\FinanceManagement.SERVICES.pdb
 D:\Project\BackendFinanceManagement\FinanceManagement.SERVICES\obj\Debug\net8.0\ref\FinanceManagement.SERVICES.dll
+D:\Project\BackendFinanceManagement\FinanceManagement.SERVICES\obj\Debug\net8.0\FinanceManagement.SERVICES.sourcelink.json

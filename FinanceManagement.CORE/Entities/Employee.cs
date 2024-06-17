@@ -1,12 +1,19 @@
-﻿namespace FinanceManagement.CORE.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FinanceManagement.CORE.Entities
 {
     public class Employee
     {
         public Guid Id { get; set; }
+        [Required]
         public string EmployeeId { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+        [Required]
         public string PasswordHash { get; set; }
         public string MobileNo { get; set; }
         public DateTime DateOfJoining { get; set; }
