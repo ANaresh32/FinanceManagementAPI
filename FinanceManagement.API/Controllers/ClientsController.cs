@@ -45,18 +45,18 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != client.Id)
             {
-                return BadRequest();
+                return BadRequest(new { message = "Client ID Does Not Exist." });
             }
 
             await _clientService.UpdateClientAsync(client);
-            return NoContent();
+            return Ok(new { message = "Client Updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(Guid id)
         {
             await _clientService.DeleteClientAsync(id);
-            return NoContent();
+            return Ok(new { message = "Client Deleted successfully." });
         }
     }
 }

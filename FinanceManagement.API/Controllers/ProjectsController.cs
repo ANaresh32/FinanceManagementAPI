@@ -45,18 +45,18 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != project.Id)
             {
-                return BadRequest();
+                return BadRequest(new { message = "Project ID Does Not Exist." });
             }
 
             await _projectService.UpdateProjectAsync(project);
-            return NoContent();
+            return Ok(new { message = "Project Updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
             await _projectService.DeleteProjectAsync(id);
-            return NoContent();
+            return Ok(new { message = "Project Deleted successfully." });
         }
     }
 }

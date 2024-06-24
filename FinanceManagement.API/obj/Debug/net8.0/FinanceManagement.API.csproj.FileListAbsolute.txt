@@ -1,9 +1,3 @@
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.csproj.AssemblyReference.cache
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.AssemblyInfoInputs.cache
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.AssemblyInfo.cs
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.csproj.CoreCompileInputs.cache
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.MvcApplicationPartsAssemblyInfo.cache
 D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\appsettings.Development.json
 D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\appsettings.json
 D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\FinanceManagement.API.exe
@@ -93,6 +87,14 @@ D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\Finan
 D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\FinanceManagement.DATA.pdb
 D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\FinanceManagement.SERVICES.pdb
 D:\Project\BackendFinanceManagement\FinanceManagement.API\bin\Debug\net8.0\FinanceManagement.CORE.pdb
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.csproj.AssemblyReference.cache
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.AssemblyInfoInputs.cache
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.AssemblyInfo.cs
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.csproj.CoreCompileInputs.cache
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.MvcApplicationPartsAssemblyInfo.cache
+D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.sourcelink.json
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\staticwebassets.build.json
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\staticwebassets.development.json
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\staticwebassets\msbuild.FinanceManagement.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -107,5 +109,3 @@ D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\refin
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.pdb
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.genruntimeconfig.cache
 D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\ref\FinanceManagement.API.dll
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.MvcApplicationPartsAssemblyInfo.cs
-D:\Project\BackendFinanceManagement\FinanceManagement.API\obj\Debug\net8.0\FinanceManagement.API.sourcelink.json

@@ -1,4 +1,5 @@
-﻿using FinanceManagement.CORE.Entities;
+﻿//using FinanceManagement.CORE.DTO;
+using FinanceManagement.CORE.Entities;
 using FinanceManagement.SERVICES.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,9 +31,16 @@ namespace FinanceManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<Employee>>> GetTeamMembers(Guid id) =>
             Ok(await _employeeService.GetTeamMembersAsync(id));
 
-        [HttpGet("{id}/projects")]
-        public async Task<ActionResult<IEnumerable<EmployeeProject>>> GetEmployeeProjects(Guid id) =>
-            Ok(await _employeeService.GetEmployeeProjectsAsync(id));
+        [HttpGet("{employeeId}/projects")]
+        public async Task<ActionResult<IEnumerable<EmployeeProject>>> GetEmployeeProjects(Guid employeeId)
+        {
+            var projects = await _employeeService.GetEmployeeProjectsAsync(employeeId);
+            if (projects == null)
+            {
+                return NotFound();
+            }
+            return Ok(projects);
+        }
 
         [HttpPost]
         public async Task<ActionResult> PostEmployee(Employee employee)
@@ -44,16 +52,19 @@ namespace FinanceManagement.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee(Guid id, Employee employee)
         {
-            if (id != employee.Id) return BadRequest();
+            if (id != employee.Id)
+            {
+                return BadRequest(new { message = "Employee ID Does Not Exist." });
+            }
             await _employeeService.UpdateEmployeeAsync(employee);
-            return NoContent();
+            return Ok(new { message = "Employee Updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(Guid id)
         {
             await _employeeService.DeleteEmployeeAsync(id);
-            return NoContent();
-        }
+            return Ok(new { message = "Employee Deleted successfully." });
+        }        
     }
 }

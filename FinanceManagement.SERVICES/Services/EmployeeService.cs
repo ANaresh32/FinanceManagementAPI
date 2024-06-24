@@ -1,4 +1,5 @@
-﻿using FinanceManagement.CORE.Entities;
+﻿//using FinanceManagement.CORE.DTO;
+using FinanceManagement.CORE.Entities;
 using FinanceManagement.DATA.IRepo;
 using FinanceManagement.SERVICES.Interface;
 
@@ -30,5 +31,30 @@ namespace FinanceManagement.SERVICES.Services
 
         public async Task<IEnumerable<EmployeeProject>> GetEmployeeProjectsAsync(Guid employeeId) =>
             await _employeeProjectRepository.FindAsync(ep => ep.EmployeeId == employeeId);
+
+        /*public async Task<Employee> CreateEmployeeAsync(EmployeeCreateDto employeeCreateDto)
+        {
+            var employee = new Employee
+            {
+                Id = Guid.NewGuid(),
+                EmployeeId = employeeCreateDto.EmployeeId,
+                FirstName = employeeCreateDto.FirstName,
+                LastName = employeeCreateDto.LastName,
+                Email = employeeCreateDto.Email,
+                PasswordHash = employeeCreateDto.PasswordHash,
+                MobileNo = employeeCreateDto.MobileNo,
+                DateOfJoining = employeeCreateDto.DateOfJoining,
+                ProjectManagerId = employeeCreateDto.ProjectManagerId,
+                EmployeeStatus = employeeCreateDto.EmployeeStatus,
+                SkillSets = employeeCreateDto.SkillSets,
+                RoleId = employeeCreateDto.RoleId
+            };
+
+            await _employeeRepository.AddAsync(employee);
+            await _employeeRepository.SaveAsync();
+
+            return employee;
+        }*/
+
     }
 }

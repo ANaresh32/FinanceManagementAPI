@@ -36,6 +36,10 @@ namespace FinanceManagement.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Role>> CreateRole(Role role)
         {
+            if (role.Id == Guid.Empty)
+            {
+                role.Id = Guid.NewGuid(); // Ensure a new GUID is generated if not provided
+            }
             await _roleService.AddRoleAsync(role);
             return CreatedAtAction(nameof(GetRoleById), new { id = role.Id }, role);
         }
@@ -45,18 +49,18 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != role.Id)
             {
-                return BadRequest();
+                return BadRequest(new { message = "Role ID Does Not Exist." });
             }
 
             await _roleService.UpdateRoleAsync(role);
-            return NoContent();
+            return Ok(new { message = "Role updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRole(Guid id)
         {
             await _roleService.DeleteRoleAsync(id);
-            return NoContent();
+            return Ok(new { message = "Role Deleted successfully." });
         }
     }
 }

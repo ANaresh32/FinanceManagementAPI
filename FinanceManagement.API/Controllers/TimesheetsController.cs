@@ -45,18 +45,18 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != timesheet.Id)
             {
-                return BadRequest();
+                return BadRequest(new { message = "No Such Time Sheet Exist." });
             }
 
             await _timesheetService.UpdateTimesheetAsync(timesheet);
-            return NoContent();
+            return Ok(new { message = "TimeSheet Updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTimesheet(Guid id)
         {
             await _timesheetService.DeleteTimesheetAsync(id);
-            return NoContent();
+            return Ok(new { message = "TimeSheet Deleted successfully." });
         }
     }
 }

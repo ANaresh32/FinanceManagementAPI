@@ -1,4 +1,5 @@
-﻿using FinanceManagement.CORE.Entities;
+﻿//using FinanceManagement.CORE.DTO;
+using FinanceManagement.CORE.Entities;
 
 namespace FinanceManagement.SERVICES.Interface
 {
@@ -11,5 +12,7 @@ namespace FinanceManagement.SERVICES.Interface
         Task DeleteEmployeeAsync(Guid id);
         Task<IEnumerable<Employee>> GetTeamMembersAsync(Guid managerId);
         Task<IEnumerable<EmployeeProject>> GetEmployeeProjectsAsync(Guid employeeId);
+
+        //Task<Employee> CreateEmployeeAsync(EmployeeCreateDto employeeCreateDto);
     }
 }

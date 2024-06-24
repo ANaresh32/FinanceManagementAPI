@@ -8,9 +8,9 @@ D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\Fina
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.AssemblyInfoInputs.cache
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.AssemblyInfo.cs
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.csproj.CoreCompileInputs.cache
+D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.sourcelink.json
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.csproj.CopyComplete
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.dll
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\refint\FinanceManagement.DATA.dll
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.pdb
 D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\ref\FinanceManagement.DATA.dll
-D:\Project\BackendFinanceManagement\FinanceManagement.DATA\obj\Debug\net8.0\FinanceManagement.DATA.sourcelink.json
