@@ -26,8 +26,7 @@ namespace FinanceManagement.CORE.Entities
         public Guid RoleId { get; set; }
 
         public Role Role { get; set; }
-        //public Employee ProjectManager { get; set; }
-
+        public Employee ProjectManager { get; set; }
         public ICollection<Employee> TeamMembers { get; set; } = new List<Employee>();
 
         public ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();

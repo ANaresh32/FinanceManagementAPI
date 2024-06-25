@@ -1,5 +1,4 @@
-﻿//using FinanceManagement.CORE.DTO;
-using FinanceManagement.CORE.Entities;
+﻿using FinanceManagement.CORE.Entities;
 using FinanceManagement.DATA.IRepo;
 using FinanceManagement.SERVICES.Interface;
 
