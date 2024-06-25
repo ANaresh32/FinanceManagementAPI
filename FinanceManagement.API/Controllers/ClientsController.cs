@@ -15,10 +15,16 @@ namespace FinanceManagement.API.Controllers
             _clientService = clientService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllClients")]
         public async Task<ActionResult<IEnumerable<Client>>> GetAllClients()
         {
             var clients = await _clientService.GetAllClientsAsync();
+            return Ok(clients);
+        }
+        [HttpPost("Add")]
+        public async Task<ActionResult<Client>> AddnewClient(Client client)
+        {
+            var clients = await _clientService.AddClientAsync(client);
             return Ok(clients);
         }
 

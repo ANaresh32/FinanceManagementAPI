@@ -42,9 +42,19 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITimesheetService, TimesheetService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:5174") // Remove trailing slash
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // Ensure credentials are allowed if needed
+    });
+});
 
 var app = builder.Build();
-
+app.UseCors("AllowSpecificOrigin");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

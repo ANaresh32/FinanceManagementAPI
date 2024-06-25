@@ -1,7 +1,10 @@
-﻿using FinanceManagement.CORE.Entities;
+﻿using FinanceManagement.API.Extensions;
+using FinanceManagement.API.Models.Response;
+using FinanceManagement.CORE.Entities;
 using FinanceManagement.SERVICES.Interface;
 using Microsoft.AspNetCore.Mvc;
 
+using Microsoft.EntityFrameworkCore.Internal;
 namespace FinanceManagement.API.Controllers
 {
     [ApiController]
@@ -14,12 +17,25 @@ namespace FinanceManagement.API.Controllers
         {
             _projectService = projectService;
         }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetAllProjects()
+       
+        [HttpGet("GetAllProjects")]
+        public async Task<ItemResponse> GetAllProjects()
         {
-            var projects = await _projectService.GetAllProjectsAsync();
-            return Ok(projects);
+            ItemResponse response = new ItemResponse();
+            try
+            {
+                 response.Item = await _projectService.GetAllProjectsAsync();
+                 response.IsSuccess = true;
+            }
+            catch(FinanceException ex)
+            {
+                response.Error = ex.ToError();
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+            }
+            return response;
         }
 
         [HttpGet("{id}")]
@@ -32,7 +48,27 @@ namespace FinanceManagement.API.Controllers
             }
             return Ok(project);
         }
+        [HttpPost("NewProject")]
+        public async Task<ItemResponse> AddNewProject(Project project)
+        {
+            ItemResponse response = new ItemResponse();
+            try
+            {
+                response.Item = await _projectService.AddProjectAsync(project);
+                response.IsSuccess = true;
+            }
+            catch(FinanceException ex)
+            {
+                response.Error = ex.ToError();
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+            }
 
+            return response;
+        }
+       
         [HttpPost]
         public async Task<ActionResult<Project>> CreateProject(Project project)
         {
