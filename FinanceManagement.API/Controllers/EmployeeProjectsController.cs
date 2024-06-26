@@ -21,10 +21,20 @@ namespace FinanceManagement.API.Controllers
             return Ok(employeeProjects);
         }
 
-        [HttpGet("{employeeId}")]
+        /*[HttpGet("{employeeId}")]
         public async Task<ActionResult<EmployeeProject>> GetEmployeeProject(Guid employeeId)
         {
             var employeeProject = await _employeeProjectService.GetEmployeeProjectByIdAsync(employeeId);
+            if (employeeProject == null)
+            {
+                return NotFound();
+            }
+            return Ok(employeeProject);
+        }*/
+        [HttpGet("{employeeId}/{projectId}")]
+        public async Task<ActionResult<EmployeeProject>> GetEmployeeProject(Guid employeeId, Guid projectId)
+        {
+            var employeeProject = await _employeeProjectService.GetEmployeeProjectByIdAsync(employeeId, projectId);
             if (employeeProject == null)
             {
                 return NotFound();

@@ -22,9 +22,9 @@ namespace FinanceManagement.DATA.Repo
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(params object[] keyValues)
         {
-            return await _dbSet.FindAsync(id);
+            return await _dbSet.FindAsync(keyValues);
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)

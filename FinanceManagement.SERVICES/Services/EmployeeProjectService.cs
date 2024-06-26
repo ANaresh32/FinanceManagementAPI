@@ -13,7 +13,8 @@ namespace FinanceManagement.SERVICES.Services
             _employeeProjectRepository = employeeProjectRepository;
         }
         public async Task<IEnumerable<EmployeeProject>> GetAllEmployeeProjectsAsync() => await _employeeProjectRepository.GetAllAsync();
-        public async Task<EmployeeProject> GetEmployeeProjectByIdAsync(Guid employeeId) => await _employeeProjectRepository.GetByIdAsync(employeeId);
+        //public async Task<EmployeeProject> GetEmployeeProjectByIdAsync(Guid employeeId) => await _employeeProjectRepository.GetByIdAsync(employeeId);
+        public async Task<EmployeeProject> GetEmployeeProjectByIdAsync(Guid employeeId, Guid projectId) => await _employeeProjectRepository.GetByIdAsync(employeeId, projectId);
         public async Task AddEmployeeProjectAsync(EmployeeProject employeeProject) => await _employeeProjectRepository.AddAsync(employeeProject);
         public async Task UpdateEmployeeProjectAsync(EmployeeProject employeeProject) => await _employeeProjectRepository.UpdateAsync(employeeProject);
         public async Task DeleteEmployeeProjectAsync(Guid employeeId) => await _employeeProjectRepository.DeleteAsync(employeeId);
