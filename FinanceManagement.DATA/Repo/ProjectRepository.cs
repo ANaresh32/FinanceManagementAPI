@@ -22,7 +22,7 @@ namespace FinanceManagement.DATA.Repo
             }
             Guid projectid = Guid.NewGuid();
             project.Id = projectid;
-
+            
             await _context.Projects.AddAsync(project);
             await _context.SaveChangesAsync();
             return project;

@@ -1,4 +1,7 @@
-﻿using FinanceManagement.CORE.Entities;
+﻿using FinanceManagement.API.Extensions;
+using FinanceManagement.API.Models.Response;
+using FinanceManagement.CORE.Entities;
+using FinanceManagement.DATA.Repo;
 using FinanceManagement.SERVICES.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,16 +19,44 @@ namespace FinanceManagement.API.Controllers
         }
 
         [HttpGet("GetAllClients")]
-        public async Task<ActionResult<IEnumerable<Client>>> GetAllClients()
+        public async Task<ItemResponse> GetAllClients()
         {
-            var clients = await _clientService.GetAllClientsAsync();
-            return Ok(clients);
+            ItemResponse response = new ItemResponse();
+            try
+            {
+                response.Item = await _clientService.GetAllClientsAsync();
+                response.IsSuccess = true;
+            }
+            catch (FinanceException ex)
+            {
+                response.Error = ex.ToError();
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+            }
+            return response;
         }
         [HttpPost("Add")]
-        public async Task<ActionResult<Client>> AddnewClient(Client client)
+        public async Task<ItemResponse> AddnewClient(Client client)
         {
-            var clients = await _clientService.AddClientAsync(client);
-            return Ok(clients);
+            ItemResponse response = new ItemResponse();
+            try
+            {
+                response.Item = await _clientService.AddClientAsync(client);
+                response.IsSuccess = true;
+            }
+            catch(FinanceException ex)
+            {
+                response.Error = ex.ToError();
+
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+            }
+
+            return response;
         }
 
         [HttpGet("{id}")]

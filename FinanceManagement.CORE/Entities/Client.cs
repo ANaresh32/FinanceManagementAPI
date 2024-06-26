@@ -14,7 +14,7 @@ namespace FinanceManagement.CORE.Entities
 
         public ICollection<Project> Projects { get; set; }*/
         public Guid Id { get; set; }
-        public string ClientName { get; set; }
+        public string  ClientName { get; set; }
         public string ClientEmailId { get; set; }
         public string ClientLocation { get; set; }
         public string ReferenceName { get; set; }

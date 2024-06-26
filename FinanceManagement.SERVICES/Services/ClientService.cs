@@ -14,12 +14,23 @@ namespace FinanceManagement.SERVICES.Services
         }
         public async Task<List<Client>> GetAllClientsAsync()
         {
-            return await _clientRepository.GetAllClientsAsync();
-
+          
+             var result=   await _clientRepository.GetAllClientsAsync();
+            if (result == null)
+            {
+                throw new  FinanceException("001", "no client found");
+            }
+            return result;
         }
         public async Task<Client> AddClientAsync(Client client)
         {
-            return await _clientRepository.AddnewClientAsync(client);
+            
+            var result = await _clientRepository.AddnewClientAsync(client);
+            if (result == null)
+            {
+                throw new FinanceException("00014", "Client email is already exist");
+            }
+            return result;
 
         }
        // public async Task<IEnumerable<Client>> GetAllClientsAsync() => await _clientRepository.GetAllAsync();

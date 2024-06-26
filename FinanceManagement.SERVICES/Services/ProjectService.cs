@@ -17,7 +17,7 @@ namespace FinanceManagement.SERVICES.Services
             var result = await _projectRepository.AddNewProjectAsync(project);
             if (result == null)
             {
-                throw new FinanceException("AL001", "Project Name already exsit");
+                throw new FinanceException("AL001", "Project  already exsit");
             }
             return result;
         }

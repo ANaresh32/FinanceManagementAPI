@@ -24,7 +24,6 @@ namespace FinanceManagement.CORE.Entities
         public string EmployeeStatus { get; set; }
         public string SkillSets { get; set; }
         public Guid RoleId { get; set; }
-
         public Role Role { get; set; }
         public Employee ProjectManager { get; set; }
 

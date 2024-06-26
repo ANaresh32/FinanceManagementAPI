@@ -15,13 +15,17 @@ namespace FinanceManagement.DATA.Repo
         public async Task<List<Client>> GetAllClientsAsync()
         {
             var result = await _context.Clients.ToListAsync();
+            if (result == null)
+            {
+                return null;
+            }
             return result;
         }
         public async Task<Client> AddnewClientAsync(Client client)
         {
             var IsExist=await _context.Clients.FirstOrDefaultAsync(x=>x.ClientEmailId==client.ClientEmailId);
             if (IsExist != null) {
-                throw new Exception("this email is already exsit");
+                return null;
             }
             Guid id = Guid.NewGuid();
             client.Id = id;
