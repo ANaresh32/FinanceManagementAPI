@@ -1,5 +1,7 @@
-﻿//using FinanceManagement.CORE.DTO;
-using FinanceManagement.CORE.Entities;
+﻿using FinanceManagement.CORE.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinanceManagement.SERVICES.Interface
 {
@@ -13,6 +15,6 @@ namespace FinanceManagement.SERVICES.Interface
         Task<IEnumerable<Employee>> GetTeamMembersAsync(Guid managerId);
         Task<IEnumerable<EmployeeProject>> GetEmployeeProjectsAsync(Guid employeeId);
 
-        //Task<Employee> CreateEmployeeAsync(EmployeeCreateDto employeeCreateDto);
+        Task<Employee> AuthenticateAsync(string email, string password); // New method for authentication
     }
 }

@@ -1,7 +1,8 @@
-﻿//using FinanceManagement.CORE.DTO;
-using FinanceManagement.CORE.Entities;
+﻿using FinanceManagement.CORE.Entities;
 using FinanceManagement.DATA.IRepo;
 using FinanceManagement.SERVICES.Interface;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinanceManagement.SERVICES.Services
 {
@@ -32,29 +33,17 @@ namespace FinanceManagement.SERVICES.Services
         public async Task<IEnumerable<EmployeeProject>> GetEmployeeProjectsAsync(Guid employeeId) =>
             await _employeeProjectRepository.FindAsync(ep => ep.EmployeeId == employeeId);
 
-        /*public async Task<Employee> CreateEmployeeAsync(EmployeeCreateDto employeeCreateDto)
+        public async Task<Employee> AuthenticateAsync(string email, string password)
         {
-            var employee = new Employee
+            var employee = await _employeeRepository.GetByEmailAsync(email);
+
+            // Check if employee exists and password matches (assuming PasswordHash is stored securely)
+            if (employee != null && employee.PasswordHash == password)
             {
-                Id = Guid.NewGuid(),
-                EmployeeId = employeeCreateDto.EmployeeId,
-                FirstName = employeeCreateDto.FirstName,
-                LastName = employeeCreateDto.LastName,
-                Email = employeeCreateDto.Email,
-                PasswordHash = employeeCreateDto.PasswordHash,
-                MobileNo = employeeCreateDto.MobileNo,
-                DateOfJoining = employeeCreateDto.DateOfJoining,
-                ProjectManagerId = employeeCreateDto.ProjectManagerId,
-                EmployeeStatus = employeeCreateDto.EmployeeStatus,
-                SkillSets = employeeCreateDto.SkillSets,
-                RoleId = employeeCreateDto.RoleId
-            };
+                return employee;
+            }
 
-            await _employeeRepository.AddAsync(employee);
-            await _employeeRepository.SaveAsync();
-
-            return employee;
-        }*/
-
+            return null;
+        }
     }
 }

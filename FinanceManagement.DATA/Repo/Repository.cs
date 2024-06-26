@@ -8,8 +8,8 @@ namespace FinanceManagement.DATA.Repo
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly FinanceDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly FinanceDbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(FinanceDbContext context)
         {
