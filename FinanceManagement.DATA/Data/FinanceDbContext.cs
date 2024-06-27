@@ -17,10 +17,10 @@ namespace FinanceManagement.DATA.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>()
+            /*modelBuilder.Entity<Employee>()
                 .HasOne(e => e.ProjectManager)
                 .WithMany(e => e.TeamMembers)
-                .HasForeignKey(e => e.ProjectManagerId);
+                .HasForeignKey(e => e.ProjectManagerId);*/
 
             modelBuilder.Entity<EmployeeProject>()
                 .HasKey(ep => new { ep.EmployeeId, ep.ProjectId });

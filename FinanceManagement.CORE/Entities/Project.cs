@@ -1,4 +1,6 @@
-﻿namespace FinanceManagement.CORE.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FinanceManagement.CORE.Entities
 {
     public class Project
     {
