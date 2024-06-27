@@ -3,6 +3,7 @@ using System;
 using FinanceManagement.DATA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FinanceManagement.DATA.Migrations
 {
     [DbContext(typeof(FinanceDbContext))]
-    partial class FinanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625095416_initailMigration")]
+    partial class initailMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,22 +31,20 @@ namespace FinanceManagement.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("ClientEmailId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ClientLocation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ClientName")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("ReferenceName")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -134,46 +135,36 @@ namespace FinanceManagement.DATA.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("ClientEmail")
-                        .HasColumnType("text");
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("EndDate")
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int>("Progress")
+                    b.Property<string>("ProjectReferenceId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("TeamMembersCount")
                         .HasColumnType("integer");
 
-                    b.Property<string>("ProjectID")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProjectManager")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProjectName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProjectRefId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProjectType")
-                        .HasColumnType("text");
-
-                    b.Property<string>("StartDate")
-                        .HasColumnType("text");
-
-                    b.Property<int>("TeamSize")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Projects");
                 });
@@ -256,7 +247,7 @@ namespace FinanceManagement.DATA.Migrations
                         .IsRequired();
 
                     b.HasOne("FinanceManagement.CORE.Entities.Project", "Project")
-                        .WithMany()
+                        .WithMany("EmployeeProjects")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -264,6 +255,17 @@ namespace FinanceManagement.DATA.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("FinanceManagement.CORE.Entities.Project", b =>
+                {
+                    b.HasOne("FinanceManagement.CORE.Entities.Client", "Client")
+                        .WithMany("Projects")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("FinanceManagement.CORE.Entities.Timesheet", b =>
@@ -279,7 +281,7 @@ namespace FinanceManagement.DATA.Migrations
                         .IsRequired();
 
                     b.HasOne("FinanceManagement.CORE.Entities.Project", "Project")
-                        .WithMany()
+                        .WithMany("Timesheets")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -291,6 +293,11 @@ namespace FinanceManagement.DATA.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("FinanceManagement.CORE.Entities.Client", b =>
+                {
+                    b.Navigation("Projects");
+                });
+
             modelBuilder.Entity("FinanceManagement.CORE.Entities.Employee", b =>
                 {
                     b.Navigation("ApprovedTimesheets");
@@ -298,6 +305,13 @@ namespace FinanceManagement.DATA.Migrations
                     b.Navigation("EmployeeProjects");
 
                     b.Navigation("TeamMembers");
+
+                    b.Navigation("Timesheets");
+                });
+
+            modelBuilder.Entity("FinanceManagement.CORE.Entities.Project", b =>
+                {
+                    b.Navigation("EmployeeProjects");
 
                     b.Navigation("Timesheets");
                 });

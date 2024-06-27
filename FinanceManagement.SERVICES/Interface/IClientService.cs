@@ -4,10 +4,11 @@ namespace FinanceManagement.SERVICES.Interface
 {
     public interface IClientService
     {
-        Task<IEnumerable<Client>> GetAllClientsAsync();
+        Task<List<Client>> GetAllClientsAsync();
         Task<Client> GetClientByIdAsync(Guid id);
-        Task AddClientAsync(Client client);
+        Task <Client> AddClientAsync(Client client);
         Task UpdateClientAsync(Client client);
         Task DeleteClientAsync(Guid id);
+       
     }
 }

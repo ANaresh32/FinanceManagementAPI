@@ -30,20 +30,20 @@ namespace FinanceManagement.DATA.Data
                 .WithMany(e => e.EmployeeProjects)
                 .HasForeignKey(ep => ep.EmployeeId);
 
-            modelBuilder.Entity<EmployeeProject>()
+          /*  modelBuilder.Entity<EmployeeProject>()
                 .HasOne(ep => ep.Project)
                 .WithMany(p => p.EmployeeProjects)
-                .HasForeignKey(ep => ep.ProjectId);
+                .HasForeignKey(ep => ep.ProjectId);*/
 
             modelBuilder.Entity<Timesheet>()
                 .HasOne(t => t.Employee)
                 .WithMany(e => e.Timesheets)
                 .HasForeignKey(t => t.EmployeeId);
 
-            modelBuilder.Entity<Timesheet>()
+           /* modelBuilder.Entity<Timesheet>()
                 .HasOne(t => t.Project)
                 .WithMany(p => p.Timesheets)
-                .HasForeignKey(t => t.ProjectId);
+                .HasForeignKey(t => t.ProjectId);*/
 
             modelBuilder.Entity<Timesheet>()
                 .HasOne(t => t.ApprovedBy)

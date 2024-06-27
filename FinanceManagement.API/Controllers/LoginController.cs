@@ -1,12 +1,14 @@
-﻿using FinanceManagement.CORE.Entities;
-using FinanceManagement.SERVICES.Interface;
+﻿using FinanceManagement.SERVICES.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using FinanceManagement.API.Models.Response;
+using FinanceManagement.CORE.Entities;
 
 namespace FinanceManagement.API.Controllers
 {
@@ -24,34 +26,44 @@ namespace FinanceManagement.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<ItemResponse> Login([FromBody] LoginRequest request)
         {
+            var response = new ItemResponse();
+
             try
             {
-                var employee = await _employeeService.AuthenticateAsync(request.Email, request.Password);
-                if (employee == null)
+                response.Item = await _employeeService.AuthenticateAsync(request.Email, request.Password);
+
+
+                if (response.Item == null)
                 {
-                    return Unauthorized(new { message = "Email or password is incorrect" });
+                    response.Error = new Error { Message = "Email or password is incorrect" };
+                    response.IsSuccess = false;
+                    
                 }
 
-                if (string.IsNullOrEmpty(employee.Email))
+                var token = GenerateJwtToken((Employee)response.Item);
+                response.IsSuccess = true;
+                response.Item = new
                 {
-                    return StatusCode(500, "Employee data is invalid.");
-                }
-
-                var token = GenerateJwtToken(employee);
-
-                return Ok(new
-                {
-                    employee,
+                    Employee = response.Item,
                     Token = token
-                });
+                };
+
+                return response;
+            }
+            catch (FinanceException ex)
+            {
+                response.Error = new Error { Message = ex.Message };
+                response.IsSuccess = false;
             }
             catch (Exception ex)
             {
-                // Log exception (not shown in this example)
-                return StatusCode(500, "Internal server error: " + ex.Message);
+                response.Error = new Error { Message = $"Internal server error: {ex.Message}" };
+                response.IsSuccess = false;
             }
+
+            return response;
         }
 
         private string GenerateJwtToken(Employee employee)
@@ -63,7 +75,6 @@ namespace FinanceManagement.API.Controllers
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, employee.Email.ToString())
-                    // Removed Role claim
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

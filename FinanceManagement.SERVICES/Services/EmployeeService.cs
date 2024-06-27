@@ -35,15 +35,16 @@ namespace FinanceManagement.SERVICES.Services
 
         public async Task<Employee> AuthenticateAsync(string email, string password)
         {
-            var employee = await _employeeRepository.GetByEmailAsync(email);
+            var employee = await _employeeRepository.GetByEmailAsync(email,password);
 
             // Check if employee exists and password matches (assuming PasswordHash is stored securely)
-            if (employee != null && employee.PasswordHash == password)
+            if (employee==null)
             {
-                return employee;
+                throw new FinanceException("hbfsda", "fhskjdhs"); ;
             }
+             
 
-            return null;
+            return employee;
         }
     }
 }
