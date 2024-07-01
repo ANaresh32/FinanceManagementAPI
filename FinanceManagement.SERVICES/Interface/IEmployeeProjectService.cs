@@ -10,6 +10,6 @@ namespace FinanceManagement.SERVICES.Interface
         Task<EmployeeProject> GetEmployeeProjectByIdAsync(Guid employeeId, Guid projectId);
         Task AddEmployeeProjectAsync(EmployeeProject employeeProject);
         Task UpdateEmployeeProjectAsync(EmployeeProject employeeProject);
-        Task DeleteEmployeeProjectAsync(Guid employeeId);
+        Task DeleteEmployeeProjectAsync(Guid employeeId, Guid projectId);
     }
 }

@@ -19,6 +19,10 @@ namespace FinanceManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<Role>>> GetAllRoles()
         {
             var roles = await _roleService.GetAllRolesAsync();
+            if (roles == null)
+            {
+                return NotFound(new { message = "No roles exist." });
+            }
             return Ok(roles);
         }
 
@@ -28,7 +32,7 @@ namespace FinanceManagement.API.Controllers
             var role = await _roleService.GetRoleByIdAsync(id);
             if (role == null)
             {
-                return NotFound();
+                return NotFound(new { message = "No roles exist for provided ID." });
             }
             return Ok(role);
         }
@@ -36,10 +40,10 @@ namespace FinanceManagement.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Role>> CreateRole(Role role)
         {
-            if (role.Id == Guid.Empty)
+            /*if (role.Id == Guid.Empty)
             {
                 role.Id = Guid.NewGuid(); // Ensure a new GUID is generated if not provided
-            }
+            }*/
             await _roleService.AddRoleAsync(role);
             return CreatedAtAction(nameof(GetRoleById), new { id = role.Id }, role);
         }
@@ -49,9 +53,8 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != role.Id)
             {
-                return BadRequest(new { message = "Role ID Does Not Exist." });
+                return BadRequest(new { message = "Role ID does not exist." });
             }
-
             await _roleService.UpdateRoleAsync(role);
             return Ok(new { message = "Role updated successfully." });
         }
@@ -60,7 +63,7 @@ namespace FinanceManagement.API.Controllers
         public async Task<IActionResult> DeleteRole(Guid id)
         {
             await _roleService.DeleteRoleAsync(id);
-            return Ok(new { message = "Role Deleted successfully." });
+            return Ok(new { message = "Role deleted successfully." });
         }
     }
 }

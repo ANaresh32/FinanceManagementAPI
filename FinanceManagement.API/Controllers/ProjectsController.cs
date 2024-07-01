@@ -19,6 +19,10 @@ namespace FinanceManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<Project>>> GetAllProjects()
         {
             var projects = await _projectService.GetAllProjectsAsync();
+            if (projects == null)
+            {
+                return NotFound(new { message = "No projects exist." });
+            }
             return Ok(projects);
         }
 
@@ -28,7 +32,7 @@ namespace FinanceManagement.API.Controllers
             var project = await _projectService.GetProjectByIdAsync(id);
             if (project == null)
             {
-                return NotFound();
+                return NotFound(new { message = "No projects exist for provided ID." });
             }
             return Ok(project);
         }
@@ -45,18 +49,17 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != project.Id)
             {
-                return BadRequest(new { message = "Project ID Does Not Exist." });
+                return BadRequest(new { message = "Project ID does not exist." });
             }
-
             await _projectService.UpdateProjectAsync(project);
-            return Ok(new { message = "Project Updated successfully." });
+            return Ok(new { message = "Project updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
             await _projectService.DeleteProjectAsync(id);
-            return Ok(new { message = "Project Deleted successfully." });
+            return Ok(new { message = "Project deleted successfully." });
         }
     }
 }

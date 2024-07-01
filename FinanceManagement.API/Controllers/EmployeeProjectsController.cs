@@ -18,6 +18,10 @@ namespace FinanceManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<EmployeeProject>>> GetAllEmployeeProjects()
         {
             var employeeProjects = await _employeeProjectService.GetAllEmployeeProjectsAsync();
+            if (employeeProjects == null)
+            {
+                return Ok(new { message = "No project exist." });
+            }
             return Ok(employeeProjects);
         }
 
@@ -37,34 +41,38 @@ namespace FinanceManagement.API.Controllers
             var employeeProject = await _employeeProjectService.GetEmployeeProjectByIdAsync(employeeId, projectId);
             if (employeeProject == null)
             {
-                return NotFound();
+                return NotFound(new { message = "No project exist for provided employee." });
             }
             return Ok(employeeProject);
         }
 
         [HttpPost]
-        public async Task<ActionResult<EmployeeProject>> CreateEmployeeProject([FromBody] EmployeeProject employeeProject)
+        public async Task<ActionResult<EmployeeProject>> AssignEmployeeProject([FromBody] EmployeeProject employeeProject)
         {
             await _employeeProjectService.AddEmployeeProjectAsync(employeeProject);
             return CreatedAtAction(nameof(GetEmployeeProject), new { employeeId = employeeProject.EmployeeId, projectId = employeeProject.ProjectId }, employeeProject);
         }
 
         [HttpPut("{employeeId}")]///*/{projectId}*/
-        public async Task<IActionResult> UpdateEmployeeProject(Guid employeeId, [FromBody] EmployeeProject employeeProject)//, Guid projectId,
+        public async Task<IActionResult> ReassignEmployeeProject(Guid employeeId, [FromBody] EmployeeProject employeeProject)//, Guid projectId,
         {
             if (employeeId != employeeProject.EmployeeId)// || projectId != employeeProject.ProjectId)
             {
-                return BadRequest();
+                return BadRequest(new { message = "Details not matching." });
+            }
+            else if (employeeProject == null)
+            {
+                return NotFound(new { message = "No projects exist for provided employee." });
             }
             await _employeeProjectService.UpdateEmployeeProjectAsync(employeeProject);
-            return NoContent();
+            return Ok(new { message = "Employee project details updated sucessfully." });
         }
 
-        [HttpDelete("{employeeId}")]///*/{projectId}*/
-        public async Task<IActionResult> DeleteEmployeeProject(Guid employeeId)
+        [HttpDelete("{employeeId}/{projectId}")]
+        public async Task<IActionResult> DeassignEmployeeProject(Guid employeeId, Guid projectId)
         {
-            await _employeeProjectService.DeleteEmployeeProjectAsync(employeeId);
-            return NoContent();
+            await _employeeProjectService.DeleteEmployeeProjectAsync(employeeId, projectId);
+            return Ok(new { message = "Employee project details deleted succesfully." });
         }
     }
 }

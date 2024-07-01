@@ -22,9 +22,9 @@ namespace FinanceManagement.DATA.Repo
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(params object[] keyValues)
+        public async Task<T> GetByIdAsync(params object[] id)
         {
-            return await _dbSet.FindAsync(keyValues);
+            return await _dbSet.FindAsync(id);
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
@@ -44,7 +44,7 @@ namespace FinanceManagement.DATA.Repo
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(params object[] id)
         {
             var entity = await _dbSet.FindAsync(id);
             if (entity != null)

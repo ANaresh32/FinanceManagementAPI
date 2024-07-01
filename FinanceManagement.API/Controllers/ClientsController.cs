@@ -19,6 +19,10 @@ namespace FinanceManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<Client>>> GetAllClients()
         {
             var clients = await _clientService.GetAllClientsAsync();
+            if (clients == null)
+            {
+                return NotFound(new { message = "No clients exist." });
+            }
             return Ok(clients);
         }
 
@@ -28,7 +32,7 @@ namespace FinanceManagement.API.Controllers
             var client = await _clientService.GetClientByIdAsync(id);
             if (client == null)
             {
-                return NotFound();
+                return NotFound(new { message = "No clients exist with provided ID." });
             }
             return Ok(client);
         }
@@ -45,18 +49,18 @@ namespace FinanceManagement.API.Controllers
         {
             if (id != client.Id)
             {
-                return BadRequest(new { message = "Client ID Does Not Exist." });
+                return BadRequest(new { message = "Client ID does not exist." });
             }
 
             await _clientService.UpdateClientAsync(client);
-            return Ok(new { message = "Client Updated successfully." });
+            return Ok(new { message = "Client details updated successfully." });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(Guid id)
         {
             await _clientService.DeleteClientAsync(id);
-            return Ok(new { message = "Client Deleted successfully." });
+            return Ok(new { message = "Client deleted successfully." });
         }
     }
 }
